@@ -23,8 +23,15 @@ public class UserService {
 
     public UserResponse createUser(UserCreationRequest request) {
         User user = userMapper.toUser(request);
+        user.setPassword(request.getPassword());
+        user.setDateOfBirth(request.getDateOfBirth());
 
-        return userMapper.toUserResponse(userRepository.save(user));
+
+        user = userRepository.save(user);
+        UserResponse userResponse = userMapper.toUserResponse(user);
+        userResponse.setDateOfBirth(user.getDateOfBirth());
+
+        return userResponse;
     }
 
     public List<UserResponse> getAllUsers() {

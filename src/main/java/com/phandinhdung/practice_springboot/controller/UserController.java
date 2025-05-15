@@ -4,11 +4,13 @@ import com.phandinhdung.practice_springboot.dto.request.UserCreationRequest;
 import com.phandinhdung.practice_springboot.dto.request.UserUpdateRequest;
 import com.phandinhdung.practice_springboot.dto.response.UserResponse;
 import com.phandinhdung.practice_springboot.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/create-user")
-    ResponseEntity<UserResponse> createUser(@RequestBody UserCreationRequest request) {
+    ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserCreationRequest request) {
         UserResponse userResponse = userService.createUser(request);
         return ResponseEntity.ok(userResponse);
     }

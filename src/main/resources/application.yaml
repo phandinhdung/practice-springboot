@@ -11,6 +11,9 @@ spring:
     driverClassName: "com.mysql.cj.jdbc.Driver"
     password: ${DBMS_PASSWORD:root}
     username: ${DBMS_USERNAME:root}
+  messages:
+    basename:
+      ValidationMessages
   jpa:
     hibernate:
       ddl-auto: update
